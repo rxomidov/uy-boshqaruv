@@ -183,7 +183,7 @@ function clearData() {
         </label>
 
         <label class="field">
-          <span>Қўшимча ма'lумот</span>
+          <span>Қўшимча маълумот</span>
           <textarea v-model="form.additionalInfo" rows="3" placeholder="Ixtiyoriy ma'lumot…" :disabled="form.is_blue_bay"></textarea>
         </label>
 
