@@ -22,7 +22,19 @@ function getSquareFor(block, floor, number) {
     return `${squares[number - 1]}`
   }
   if(block.startsWith('V')) {
-    const squares = ['50,93', '58.32 а', '58.32 б', '58.52', '65.69 а', '65.69 б', '67.62 а', '67.62 б']
+    const squares = ['50,93', '58.32 а', '58.32 б', '58.44', '58.52', '65.69 а', '65.69 б', '67.62 а', '67.62 б']
+    return `${squares[number - 1]}`
+  }
+  if(block.startsWith('G')) {
+    const squares = ['50,93', '58.32 а', '58.32 б', '58.44', '58.52', '65.69 а', '65.69 б', '67.62 а', '67.62 б']
+    return `${squares[number - 1]}`
+  }
+  if(block.startsWith('D')) {
+    const squares = ['67.02', '70.89', '72.16', '77.74', '98.26']
+    return `${squares[number - 1]}`
+  }
+  if(block.startsWith('E')) {
+    const squares = ['54.33', '62.66', '72.42', '59.89', '65.72']
     return `${squares[number - 1]}`
   }
 }

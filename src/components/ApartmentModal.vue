@@ -12,7 +12,7 @@ const emit = defineEmits(['close', 'save', 'clear'])
 const form = reactive({
   fullName: props.apartment?.full_name || '',
   phone: props.apartment?.phone || '',
-  contractNumber: props.apartment?.contractNumber || '',
+  contract_number: props.apartment?.contract_number || '',
   additionalInfo: props.apartment?.additional_info || '',
 })
 
@@ -67,7 +67,7 @@ function clearData() {
 
         <label class="field">
           <span>Shartnoma raqami</span>
-          <input v-model="form.contractNumber" type="text" placeholder="16/000" />
+          <input v-model="form.contract_number" type="text" placeholder="16/000" />
         </label>
 
         <label class="field">

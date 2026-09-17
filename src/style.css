@@ -22,7 +22,7 @@ body {
 }
 
 .page {
-  max-width: 100%;
+  max-width: 150vw;
   margin: 0 auto;
   padding: 24px 20px 60px;
 }
@@ -121,7 +121,7 @@ body {
 
 .blocks-row {
   display: flex;
-  gap: 18px;
+  gap: 8px;
   overflow-x: auto;
   padding-bottom: 8px;
 }
@@ -130,7 +130,6 @@ body {
   background: var(--card-bg);
   border-radius: var(--radius);
   overflow: hidden;
-  flex: 1 1 220px;
   min-width: 220px;
   display: flex;
   flex-direction: column;
@@ -155,7 +154,7 @@ body {
 }
 
 .block-grid {
-  padding: 12px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -164,7 +163,7 @@ body {
 .floor-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .floor-label {

@@ -54,7 +54,7 @@ async function saveApartment(payload) {
     number,
     full_name: payload.fullName,
     phone: payload.phone,
-    contractNumber: payload.contractNumber,
+    contract_number: payload.contract_number,
     additional_info: payload.additionalInfo,
     status: payload.status,
     updated_at: new Date().toISOString(),
