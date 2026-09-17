@@ -75,6 +75,6 @@ function select(floor, number) {
       </div>
     </div>
 
-    <div class="block-footer" :style="{ background: block.color }">{{ block.key }}</div>
+    <!-- <div class="block-footer" :style="{ background: block.color }">{{ block.key }}</div> -->
   </section>
 </template>

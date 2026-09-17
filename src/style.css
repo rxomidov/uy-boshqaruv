@@ -22,8 +22,6 @@ body {
 }
 
 .page {
-  max-width: 150vw;
-  margin: 0 auto;
   padding: 24px 20px 24px;
 }
 
@@ -32,7 +30,7 @@ body {
 .topbar {
   background: var(--card-bg);
   border-radius: var(--radius);
-  padding: 20px 28px;
+  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -137,7 +135,7 @@ body {
 }
 
 .block-header {
-  padding: 16px 18px;
+  padding: 12px;
   color: #fff;
 }
 
@@ -167,10 +165,7 @@ body {
 }
 
 .floor-label {
-  width: 22px;
-  flex: 0 0 22px;
   text-align: center;
-  font-size: 0.8rem;
   color: var(--muted);
   font-weight: 600;
 }
@@ -182,7 +177,7 @@ body {
   border: 1.5px solid var(--border);
   background: #fff;
   color: var(--text);
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 700;
   cursor: pointer;
   display: flex;
