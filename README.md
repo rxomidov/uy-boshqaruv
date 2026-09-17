@@ -32,6 +32,9 @@ create table if not exists apartments (
   full_name text,
   phone text,
   contract_number text,
+  paid_amount numeric default 0,
+  rest_amount numeric default 0,
+  is_blue_bay boolean not null default false,
   additional_info text,
   status text not null default 'filled' check (status in ('filled', 'invalid')),
   created_at timestamptz not null default now(),
@@ -55,6 +58,16 @@ create policy "Public update" on apartments
 
 create policy "Public delete" on apartments
   for delete using (true);
+```
+
+Agar `apartments` jadvali oldin yaratilgan bo'lsa, yangi maydonlar uchun
+quyidagi skriptni bir marta ishga tushiring:
+
+```sql
+alter table apartments
+  add column if not exists paid_amount numeric default 0,
+  add column if not exists rest_amount numeric default 0,
+  add column if not exists is_blue_bay boolean not null default false;
 ```
 
 3. **Project Settings → API** bo'limidan `Project URL` va `anon public`

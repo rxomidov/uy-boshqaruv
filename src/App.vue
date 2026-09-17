@@ -60,11 +60,13 @@ const amountSummary = computed(() => {
   const totals = {
     paid: 0,
     rest: 0,
+    blueBay: 0,
   }
 
   Object.values(apartments).forEach((apartment) => {
     totals.paid += parseAmount(apartment.paid_amount)
     totals.rest += parseAmount(apartment.rest_amount)
+    if (apartment.is_blue_bay) totals.blueBay += 1
   })
 
   return totals
@@ -81,6 +83,7 @@ async function saveApartment(payload) {
     contract_number: payload.contract_number,
     paid_amount: parseAmount(payload.paid_amount),
     rest_amount: parseAmount(payload.rest_amount),
+    is_blue_bay: Boolean(payload.is_blue_bay),
     additional_info: payload.additionalInfo,
     status: payload.status,
     updated_at: new Date().toISOString(),
@@ -171,6 +174,10 @@ async function clearApartment() {
         <div class="summary-amount summary-amount--rest">
           <span class="summary-amount-label">Jami qolgan</span>
           <span class="summary-amount-value">{{ formatAmount(amountSummary.rest) }} so'm</span>
+        </div>
+        <div class="summary-amount summary-amount--blue-bay">
+          <span class="summary-amount-label">Blue bay firmasiga berilgan uylar</span>
+          <span class="summary-amount-value">{{ amountSummary.blueBay }} ta</span>
         </div>
       </div>
     </footer>

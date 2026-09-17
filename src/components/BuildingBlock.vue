@@ -42,6 +42,7 @@ function getSquareFor(block, floor, number) {
 function statusFor(floor, number) {
   const row = props.apartments[cellKey(props.block.key, floor, number)]
   if (!row) return 'empty'
+  if (row.is_blue_bay) return 'blue-bay'
   return row.status || 'filled'
 }
 

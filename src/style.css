@@ -6,6 +6,7 @@
   --border: #e4e8ef;
   --green: #29a35c;
   --red: #e34a4a;
+  --blue: #2f6fed;
   --radius: 14px;
   color-scheme: light;
 }
@@ -207,6 +208,12 @@ body {
   color: #fff;
 }
 
+.cell--blue-bay {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+
 .block-footer {
   text-align: center;
   color: #fff;
@@ -317,6 +324,10 @@ body {
   color: var(--red);
 }
 
+.summary-amount--blue-bay .summary-amount-value {
+  color: var(--blue);
+}
+
 /* ---------- Modal ---------- */
 
 .modal-backdrop {
@@ -385,6 +396,10 @@ body {
   font-weight: 600;
 }
 
+.modal-body--blue-bay .field > span > span {
+  display: none;
+}
+
 .field input,
 .field select,
 .field textarea {
@@ -405,9 +420,33 @@ body {
   background: #fff;
 }
 
+.field input:disabled,
+.field select:disabled,
+.field textarea:disabled {
+  color: var(--muted);
+  background: #f0f2f5;
+  cursor: not-allowed;
+}
+
 .field-error {
   color: var(--red);
   font-weight: 500;
+}
+
+.field-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.field-checkbox input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #2f6fed;
 }
 
 .modal-actions {
