@@ -57,7 +57,7 @@ function validate() {
   else if (!/^\+?\d[\d\s]{6,}$/.test(form.phone.trim())) e.phone = "Telefon raqami noto'g'ri formatda"
   if (!form.contract_number.trim()) e.contract_number = "Shartnoma raqamini kiriting"
   if (!form.paid_amount.trim()) e.paid_amount = "To'langan summani kiriting"
-  if (!form.rest_amount.trim()) e.rest_amount = "Qolgan summani kiriting"
+  // if (!form.rest_amount.trim()) e.rest_amount = "Qolgan summani kiriting"
   errors.value = e
   return Object.keys(e).length === 0
 }
@@ -165,7 +165,7 @@ function clearData() {
           <small v-if="errors.paid_amount" class="field-error">{{ errors.paid_amount }}</small>
         </label>
         <label class="field">
-          <span>Қолган сумма <span style="color: red;">*</span></span>
+          <span>Қолган сумма </span>
           <input
             v-model="form.rest_amount"
             type="text"
