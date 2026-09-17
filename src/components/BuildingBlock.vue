@@ -54,7 +54,7 @@ function select(floor, number) {
   <section class="block-card">
     <div class="block-header" :style="{ background: block.color }">
       <h2>{{ block.name }}</h2>
-      <p>{{ block.perFloor }} ta honadon / qavat</p>
+      <!-- <p>{{ block.perFloor }} ta honadon / qavat</p> -->
     </div>
 
     <div class="block-grid">
