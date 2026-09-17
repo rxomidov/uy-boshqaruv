@@ -12,6 +12,20 @@ const emit = defineEmits(['select'])
 function numbersFor() {
   return Array.from({ length: props.block.perFloor }, (_, i) => i + 1)
 }
+function getSquareFor(block, floor, number) {
+  if(block.startsWith('A')) {
+    const squares = ['50.93', '58.32 a', '58.32 b', '58.44', '58.52', '65.69 a', '65.69 b', '62.67 a', '62.67 b']
+    return `${squares[number - 1]}`
+  }
+  if(block.startsWith('B')) {
+    const squares = ['67.02', '70.89', '72.16', '77.74', '98.26']
+    return `${squares[number - 1]}`
+  }
+  if(block.startsWith('V')) {
+    const squares = ['50,93', '58.32 а', '58.32 б', '58.52', '65.69 а', '65.69 б', '67.62 а', '67.62 б']
+    return `${squares[number - 1]}`
+  }
+}
 
 function statusFor(floor, number) {
   const row = props.apartments[cellKey(props.block.key, floor, number)]
@@ -44,7 +58,7 @@ function select(floor, number) {
           type="button"
           @click="select(floor, number)"
         >
-          {{ number }}
+          {{ getSquareFor(block.name, floor, number) }}
         </button>
       </div>
     </div>

@@ -12,8 +12,7 @@ const emit = defineEmits(['close', 'save', 'clear'])
 const form = reactive({
   fullName: props.apartment?.full_name || '',
   phone: props.apartment?.phone || '',
-  passport: props.apartment?.passport || '',
-  apartmentType: props.apartment?.apartment_type || APARTMENT_TYPES[0],
+  contractNumber: props.apartment?.contractNumber || '',
   additionalInfo: props.apartment?.additional_info || '',
 })
 
@@ -55,7 +54,7 @@ function clearData() {
 
       <form class="modal-body" @submit.prevent="submit">
         <label class="field">
-          <span>Ism-familya *</span>
+          <span>FIO *</span>
           <input v-model="form.fullName" type="text" placeholder="Masalan: Aliyev Azizbek" />
           <small v-if="errors.fullName" class="field-error">{{ errors.fullName }}</small>
         </label>
@@ -67,15 +66,8 @@ function clearData() {
         </label>
 
         <label class="field">
-          <span>Pasport ma'lumotlari</span>
-          <input v-model="form.passport" type="text" placeholder="AA1234567" />
-        </label>
-
-        <label class="field">
-          <span>Xonadon tipi</span>
-          <select v-model="form.apartmentType">
-            <option v-for="type in APARTMENT_TYPES" :key="type" :value="type">{{ type }}</option>
-          </select>
+          <span>Shartnoma raqami</span>
+          <input v-model="form.contractNumber" type="text" placeholder="16/000" />
         </label>
 
         <label class="field">
