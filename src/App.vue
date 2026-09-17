@@ -167,6 +167,10 @@ async function clearApartment() {
         </div>
       </div>
       <div class="summary-amounts">
+        <div class="summary-amount summary-amount--all">
+          <span class="summary-amount-label">Jami</span>
+          <span class="summary-amount-value">{{ formatAmount(amountSummary.paid + amountSummary.rest) }} so'm</span>
+        </div>
         <div class="summary-amount summary-amount--paid">
           <span class="summary-amount-label">Jami to'langan</span>
           <span class="summary-amount-value">{{ formatAmount(amountSummary.paid) }} so'm</span>

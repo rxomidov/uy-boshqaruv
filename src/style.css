@@ -316,6 +316,9 @@ body {
   white-space: nowrap;
 }
 
+.summary-amount--all .summary-amount-value {
+  color: dodgerblue;
+}
 .summary-amount--paid .summary-amount-value {
   color: var(--green);
 }
