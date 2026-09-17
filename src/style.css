@@ -24,7 +24,7 @@ body {
 .page {
   max-width: 150vw;
   margin: 0 auto;
-  padding: 24px 20px 60px;
+  padding: 24px 20px 24px;
 }
 
 /* ---------- Header ---------- */
@@ -284,6 +284,44 @@ body {
   font-size: 0.85rem;
 }
 
+.summary-amounts {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.summary-amount {
+  min-width: 150px;
+  padding-left: 18px;
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: right;
+}
+
+.summary-amount-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.summary-amount-value {
+  font-weight: 800;
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.summary-amount--paid .summary-amount-value {
+  color: var(--green);
+}
+
+.summary-amount--rest .summary-amount-value {
+  color: var(--red);
+}
+
 /* ---------- Modal ---------- */
 
 .modal-backdrop {
@@ -438,6 +476,11 @@ body {
     border-right: none;
     padding-right: 0;
   }
+
+  .summary-amounts {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 560px) {
@@ -451,5 +494,17 @@ body {
 
   .cell {
     font-size: 0.7rem;
+  }
+
+  .summary-amounts {
+    justify-content: stretch;
+  }
+
+  .summary-amount {
+    flex: 1 1 100%;
+    min-width: 0;
+    padding-left: 0;
+    border-left: none;
+    text-align: left;
   }
 }

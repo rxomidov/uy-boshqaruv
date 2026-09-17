@@ -9,10 +9,18 @@ const props = defineProps({
 
 const emit = defineEmits(['close', 'save', 'clear'])
 
+function formatCurrency(value) {
+  const digits = String(value || '').replace(/\D/g, '')
+  if (!digits) return ''
+  return new Intl.NumberFormat('uz-UZ').format(Number(digits))
+}
+
 const form = reactive({
   fullName: props.apartment?.full_name || '',
   phone: props.apartment?.phone || '',
   contract_number: props.apartment?.contract_number || '',
+  paid_amount: formatCurrency(props.apartment?.paid_amount),
+  rest_amount: formatCurrency(props.apartment?.rest_amount),
   additionalInfo: props.apartment?.additional_info || '',
 })
 
@@ -25,6 +33,37 @@ function validate() {
   else if (!/^\+?\d[\d\s]{6,}$/.test(form.phone.trim())) e.phone = "Telefon raqami noto'g'ri formatda"
   errors.value = e
   return Object.keys(e).length === 0
+}
+
+function getSquareFor(block, floor, number) {
+  if(block.startsWith('A')) {
+    const squares = ['50.93', '58.32 a', '58.32 b', '58.44', '58.52', '65.69 a', '65.69 b', '62.67 a', '62.67 b']
+    return `${squares[number - 1]}`
+  }
+  if(block.startsWith('B')) {
+    const squares = ['67.02', '70.89', '72.16', '77.74', '98.26']
+    return `${squares[number - 1]}`
+  }
+  if(block.startsWith('V')) {
+    const squares = ['50,93', '58.32 а', '58.32 б', '58.44', '58.52', '65.69 а', '65.69 б', '67.62 а', '67.62 б']
+    return `${squares[number - 1]}`
+  }
+  if(block.startsWith('G')) {
+    const squares = ['50,93', '58.32 а', '58.32 б', '58.44', '58.52', '65.69 а', '65.69 б', '67.62 а', '67.62 б']
+    return `${squares[number - 1]}`
+  }
+  if(block.startsWith('D')) {
+    const squares = ['67.02', '70.89', '72.16', '77.74', '98.26']
+    return `${squares[number - 1]}`
+  }
+  if(block.startsWith('E')) {
+    const squares = ['54.33', '62.66', '72.42', '59.89', '65.72']
+    return `${squares[number - 1]}`
+  }
+}
+
+function formatAmountInput(field, event) {
+  form[field] = formatCurrency(event.target.value)
 }
 
 function submit() {
@@ -48,26 +87,47 @@ function clearData() {
         <div>
           <h3>Xonadon ma'lumotlari</h3>
           <p>{{ cell.block }} blok • {{ cell.floor }}-qavat • {{ cell.number }}-honadon</p>
+          <p>({{ getSquareFor(cell.block, cell.floor, cell.number) }} m<sup>2</sup>)</p>
         </div>
         <button class="modal-close" type="button" aria-label="Yopish" @click="$emit('close')">✕</button>
       </div>
 
       <form class="modal-body" @submit.prevent="submit">
         <label class="field">
-          <span>FIO *</span>
+          <span>FIO <span style="color: red;">*</span></span>
           <input v-model="form.fullName" type="text" placeholder="Masalan: Aliyev Azizbek" />
           <small v-if="errors.fullName" class="field-error">{{ errors.fullName }}</small>
         </label>
 
         <label class="field">
-          <span>Telefon raqami *</span>
+          <span>Telefon raqami <span style="color: red;">*</span></span>
           <input v-model="form.phone" type="tel" placeholder="+998 90 123 45 67" />
           <small v-if="errors.phone" class="field-error">{{ errors.phone }}</small>
         </label>
 
         <label class="field">
-          <span>Shartnoma raqami</span>
+          <span>Shartnoma raqami <span style="color: red;">*</span></span>
           <input v-model="form.contract_number" type="text" placeholder="16/000" />
+        </label>
+        <label class="field">
+          <span>To'langan summa <span style="color: red;">*</span></span>
+          <input
+            v-model="form.paid_amount"
+            type="text"
+            inputmode="numeric"
+            placeholder="000 000"
+            @input="formatAmountInput('paid_amount', $event)"
+          />
+        </label>
+        <label class="field">
+          <span>Qolgan summa <span style="color: red;">*</span></span>
+          <input
+            v-model="form.rest_amount"
+            type="text"
+            inputmode="numeric"
+            placeholder="000 000"
+            @input="formatAmountInput('rest_amount', $event)"
+          />
         </label>
 
         <label class="field">

@@ -46,6 +46,30 @@ const activeApartment = computed(() => {
   return apartments[cellKey(block, floor, number)] || null
 })
 
+function parseAmount(value) {
+  if (value === null || value === undefined) return 0
+  const normalized = String(value).replace(/[^\d.-]/g, '')
+  return Number(normalized) || 0
+}
+
+function formatAmount(value) {
+  return new Intl.NumberFormat('uz-UZ').format(value)
+}
+
+const amountSummary = computed(() => {
+  const totals = {
+    paid: 0,
+    rest: 0,
+  }
+
+  Object.values(apartments).forEach((apartment) => {
+    totals.paid += parseAmount(apartment.paid_amount)
+    totals.rest += parseAmount(apartment.rest_amount)
+  })
+
+  return totals
+})
+
 async function saveApartment(payload) {
   const { block, floor, number } = activeCell.value
   const record = {
@@ -55,6 +79,8 @@ async function saveApartment(payload) {
     full_name: payload.fullName,
     phone: payload.phone,
     contract_number: payload.contract_number,
+    paid_amount: payload.paid_amount,
+    rest_amount: payload.rest_amount,
     additional_info: payload.additionalInfo,
     status: payload.status,
     updated_at: new Date().toISOString(),
@@ -135,6 +161,16 @@ async function clearApartment() {
         <div v-for="block in BLOCKS" :key="block.key" class="summary-block">
           <span class="summary-block-name" :style="{ color: block.color }">{{ block.name }}</span>
           <span class="summary-block-count">{{ apartmentsInBlock(block) }} ta</span>
+        </div>
+      </div>
+      <div class="summary-amounts">
+        <div class="summary-amount summary-amount--paid">
+          <span class="summary-amount-label">Jami to'langan</span>
+          <span class="summary-amount-value">{{ formatAmount(amountSummary.paid) }} so'm</span>
+        </div>
+        <div class="summary-amount summary-amount--rest">
+          <span class="summary-amount-label">Jami qolgan</span>
+          <span class="summary-amount-value">{{ formatAmount(amountSummary.rest) }} so'm</span>
         </div>
       </div>
     </footer>

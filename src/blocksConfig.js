@@ -11,12 +11,12 @@ export const FLOORS = Array.from(
 ) // [16, 15, ..., 4]
 
 export const BLOCKS = [
-  { key: 'A', name: 'A blok', color: '#2F6FED', perFloor: 9 },
+  { key: 'A', name: 'A blok', color: '#1E8E5A', perFloor: 9 },
   { key: 'B', name: 'B blok', color: '#1E8E5A', perFloor: 5 },
-  { key: 'V', name: 'V blok', color: '#7C4FE0', perFloor: 9 },
-  { key: 'G', name: 'G blok', color: '#E08A2F', perFloor: 9 },
-  { key: 'D', name: 'D blok', color: '#12A199', perFloor: 5 },
-  { key: 'E', name: 'E blok', color: '#E0447D', perFloor: 5 },
+  { key: 'V', name: 'V blok', color: '#1E8E5A', perFloor: 9 },
+  { key: 'G', name: 'G blok', color: '#1E8E5A', perFloor: 9 },
+  { key: 'D', name: 'D blok', color: '#1E8E5A', perFloor: 5 },
+  { key: 'E', name: 'E blok', color: '#1E8E5A', perFloor: 5 },
 ]
 
 export function apartmentsInBlock(block) {
