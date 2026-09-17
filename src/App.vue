@@ -134,6 +134,7 @@ async function clearApartment() {
       <div class="legend">
         <span class="legend-item"><i class="dot dot-filled"></i>Ma'lumot kiritilgan</span>
         <span class="legend-item"><i class="dot dot-invalid"></i>Ma'lumot noto'g'ri</span>
+        <span class="legend-item"><i class="dot dot-blue"></i>Blue Bay</span>
         <span class="legend-item"><i class="dot dot-empty"></i>Ma'lumot kiritilmagan</span>
       </div>
     </header>

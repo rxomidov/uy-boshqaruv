@@ -101,6 +101,10 @@ body {
   background: var(--red);
   border-color: var(--red);
 }
+.dot-blue {
+  background: var(--blue);
+  border-color: var(--blue);
+}
 
 .dot-empty {
   background: #fff;
