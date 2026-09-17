@@ -36,27 +36,27 @@ function validate() {
 }
 
 function getSquareFor(block, floor, number) {
-  if(block.startsWith('A')) {
+  if(block === 'A') {
     const squares = ['50.93', '58.32 a', '58.32 b', '58.44', '58.52', '65.69 a', '65.69 b', '62.67 a', '62.67 b']
     return `${squares[number - 1]}`
   }
-  if(block.startsWith('B')) {
+  if(block === 'B') {
     const squares = ['67.02', '70.89', '72.16', '77.74', '98.26']
     return `${squares[number - 1]}`
   }
-  if(block.startsWith('V')) {
+  if(block === 'V') {
     const squares = ['50,93', '58.32 а', '58.32 б', '58.44', '58.52', '65.69 а', '65.69 б', '67.62 а', '67.62 б']
     return `${squares[number - 1]}`
   }
-  if(block.startsWith('G')) {
+  if(block === 'G') {
     const squares = ['50,93', '58.32 а', '58.32 б', '58.44', '58.52', '65.69 а', '65.69 б', '67.62 а', '67.62 б']
     return `${squares[number - 1]}`
   }
-  if(block.startsWith('D')) {
+  if(block === 'D') {
     const squares = ['67.02', '70.89', '72.16', '77.74', '98.26']
     return `${squares[number - 1]}`
   }
-  if(block.startsWith('E')) {
+  if(block === 'E') {
     const squares = ['54.33', '62.66', '72.42', '59.89', '65.72']
     return `${squares[number - 1]}`
   }

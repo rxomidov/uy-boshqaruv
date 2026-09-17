@@ -124,7 +124,7 @@ async function clearApartment() {
       <div class="topbar-brand">
         <div class="brand-icon">🏢</div>
         <div>
-          <h1>Uy boshqaruvi</h1>
+          <h1>Neom Tower TMJ</h1>
           <p>Barcha blokdagi honadonlar va ma'lumotlar</p>
         </div>
       </div>
