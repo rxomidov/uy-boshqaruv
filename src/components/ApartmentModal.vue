@@ -85,8 +85,8 @@ function clearData() {
     <div class="modal" role="dialog" aria-modal="true">
       <div class="modal-header">
         <div>
-          <h3>Xonadon ma'lumotlari</h3>
-          <p>{{ cell.block }} blok • {{ cell.floor }}-qavat • {{ cell.number }}-honadon</p>
+          <h3>Хонадон маълумотлари</h3>
+          <p>{{ cell.block }} блок • {{ cell.floor }}-қават • {{ cell.number }}-хонадон</p>
           <p>({{ getSquareFor(cell.block, cell.floor, cell.number) }} m<sup>2</sup>)</p>
         </div>
         <button class="modal-close" type="button" aria-label="Yopish" @click="$emit('close')">✕</button>
@@ -94,23 +94,23 @@ function clearData() {
 
       <form class="modal-body" @submit.prevent="submit">
         <label class="field">
-          <span>FIO <span style="color: red;">*</span></span>
+          <span>ФИО <span style="color: red;">*</span></span>
           <input v-model="form.fullName" type="text" placeholder="Masalan: Aliyev Azizbek" />
           <small v-if="errors.fullName" class="field-error">{{ errors.fullName }}</small>
         </label>
 
         <label class="field">
-          <span>Telefon raqami <span style="color: red;">*</span></span>
+          <span>Телефон рақами <span style="color: red;">*</span></span>
           <input v-model="form.phone" type="tel" placeholder="+998 90 123 45 67" />
           <small v-if="errors.phone" class="field-error">{{ errors.phone }}</small>
         </label>
 
         <label class="field">
-          <span>Shartnoma raqami <span style="color: red;">*</span></span>
+          <span>Шартнoma рақами <span style="color: red;">*</span></span>
           <input v-model="form.contract_number" type="text" placeholder="16/000" />
         </label>
         <label class="field">
-          <span>To'langan summa <span style="color: red;">*</span></span>
+          <span>Тўланган сумма <span style="color: red;">*</span></span>
           <input
             v-model="form.paid_amount"
             type="text"
@@ -120,7 +120,7 @@ function clearData() {
           />
         </label>
         <label class="field">
-          <span>Qolgan summa <span style="color: red;">*</span></span>
+          <span>Қолган сумма <span style="color: red;">*</span></span>
           <input
             v-model="form.rest_amount"
             type="text"
@@ -131,7 +131,7 @@ function clearData() {
         </label>
 
         <label class="field">
-          <span>Qo'shimcha ma'lumot</span>
+          <span>Қўшимча ма'lумот</span>
           <textarea v-model="form.additionalInfo" rows="3" placeholder="Ixtiyoriy ma'lumot…"></textarea>
         </label>
 
