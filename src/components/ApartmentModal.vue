@@ -177,10 +177,10 @@ function clearData() {
           <small v-if="errors.rest_amount" class="field-error">{{ errors.rest_amount }}</small>
         </label>
 
-        <label class="field-checkbox">
+        <!-- <label class="field-checkbox">
           <input v-model="form.is_blue_bay" type="checkbox" />
           <span>Blue Bay фирмасига берилган</span>
-        </label>
+        </label> -->
 
         <label class="field">
           <span>Қўшимча маълумот</span>
