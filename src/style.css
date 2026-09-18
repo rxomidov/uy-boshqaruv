@@ -88,6 +88,7 @@ body {
   width: 16px;
   height: 16px;
   border-radius: 5px;
+  margin-right: 4px;
   border: 1.5px solid var(--border);
   display: inline-block;
 }
@@ -142,6 +143,9 @@ body {
 .block-header {
   padding: 12px;
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .block-header h2 {
@@ -220,8 +224,6 @@ body {
 
 .block-footer {
   text-align: center;
-  color: #fff;
-  font-weight: 800;
   padding: 6px 0 14px;
 }
 
@@ -333,6 +335,9 @@ body {
 
 .summary-amount--blue-bay .summary-amount-value {
   color: var(--blue);
+}
+.summary-amount--izmir .summary-amount-value {
+  color: var(--green);
 }
 
 /* ---------- Modal ---------- */

@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import { cellKey } from '../blocksConfig'
 
 const props = defineProps({
@@ -46,6 +47,25 @@ function statusFor(floor, number) {
   return row.status || 'filled'
 }
 
+const blockSummary = computed(() => {
+  const totals = {
+    izmir: 0,
+    blueBay: 0,
+    empty: 0,
+  }
+
+  for (const floor of props.floors) {
+    for (const number of numbersFor()) {
+      const status = statusFor(floor, number)
+      if (status === 'blue-bay') totals.blueBay += 1
+      else if (status === 'empty') totals.empty += 1
+      else if (status === 'filled') totals.izmir += 1
+    }
+  }
+
+  return totals
+})
+
 function select(floor, number) {
   emit('select', props.block.key, floor, number)
 }
@@ -55,7 +75,11 @@ function select(floor, number) {
   <section class="block-card">
     <div class="block-header" :style="{ background: block.color }">
       <h2>{{ block.name }}</h2>
-      <!-- <p>{{ block.perFloor }} ta Xonadon / qavat</p> -->
+      <div style="display: flex;">
+        <span style="margin-left: 8px; display: flex; align-items: center;"><i class="dot dot-filled"></i>{{ blockSummary.izmir }}</span>
+        <span style="margin-left: 8px; display: flex; align-items: center;"><i class="dot dot-blue"></i>{{ blockSummary.blueBay }}</span>
+        <span style="margin-left: 8px; display: flex; align-items: center;"><i class="dot dot-empty"></i>{{ blockSummary.empty }}</span>
+      </div>
     </div>
 
     <div class="block-grid">
@@ -76,6 +100,8 @@ function select(floor, number) {
       </div>
     </div>
 
-    <!-- <div class="block-footer" :style="{ background: block.color }">{{ block.key }}</div> -->
+    <!-- <div class="block-footer">
+      
+    </div> -->
   </section>
 </template>

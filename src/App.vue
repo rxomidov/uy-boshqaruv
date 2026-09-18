@@ -60,6 +60,7 @@ const amountSummary = computed(() => {
   const totals = {
     paid: 0,
     rest: 0,
+    izmir: 0,
     blueBay: 0,
   }
 
@@ -67,6 +68,7 @@ const amountSummary = computed(() => {
     totals.paid += parseAmount(apartment.paid_amount)
     totals.rest += parseAmount(apartment.rest_amount)
     if (apartment.is_blue_bay) totals.blueBay += 1
+    else totals.izmir += 1
   })
 
   return totals
@@ -170,6 +172,14 @@ async function clearApartment() {
         </div>
       </div>
       <div class="summary-amounts">
+        <div class="summary-amount summary-amount--blue-bay">
+          <span class="summary-amount-label">Blue bay firmasiga berilgan uylar</span>
+          <span class="summary-amount-value">{{ amountSummary.blueBay }} ta</span>
+        </div>
+        <div class="summary-amount summary-amount--izmir">
+          <span class="summary-amount-label">Izmir jami shartnoma</span>
+          <span class="summary-amount-value">{{ amountSummary.izmir }} ta</span>
+        </div>
         <div class="summary-amount summary-amount--all">
           <span class="summary-amount-label">Jami</span>
           <span class="summary-amount-value">{{ formatAmount(amountSummary.paid + amountSummary.rest) }} so'm</span>
@@ -181,10 +191,6 @@ async function clearApartment() {
         <div class="summary-amount summary-amount--rest">
           <span class="summary-amount-label">Jami qolgan</span>
           <span class="summary-amount-value">{{ formatAmount(amountSummary.rest) }} so'm</span>
-        </div>
-        <div class="summary-amount summary-amount--blue-bay">
-          <span class="summary-amount-label">Blue bay firmasiga berilgan uylar</span>
-          <span class="summary-amount-value">{{ amountSummary.blueBay }} ta</span>
         </div>
       </div>
     </footer>
