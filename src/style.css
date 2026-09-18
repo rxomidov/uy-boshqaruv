@@ -400,6 +400,35 @@ body {
   gap: 8px;
 }
 
+.contract-modal {
+  max-width: 380px;
+}
+
+.contract-preview {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f7f9fc;
+}
+
+.contract-preview div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.88rem;
+}
+
+.contract-preview span {
+  color: var(--muted);
+}
+
+.contract-preview strong {
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
 .field {
   display: flex;
   flex-direction: column;

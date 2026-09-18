@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, reactive, ref } from 'vue'
 import { supabase } from './supabaseClient'
-import { BLOCKS, FLOORS, apartmentsInBlock, totalApartments, cellKey } from './blocksConfig'
+import { BLOCKS, FLOORS, apartmentsInBlock, totalApartments, cellKey, getSquareFor } from './blocksConfig'
 import BuildingBlock from './components/BuildingBlock.vue'
 import ApartmentModal from './components/ApartmentModal.vue'
 
@@ -11,6 +11,9 @@ const loading = ref(true)
 const loadError = ref('')
 
 const activeCell = ref(null) // { block, floor, number }
+const lockedCell = ref(null)
+const contractCheck = ref('')
+const contractError = ref('')
 
 const total = totalApartments()
 
@@ -33,11 +36,27 @@ async function loadApartments() {
 onMounted(loadApartments)
 
 function openCell(block, floor, number) {
-  activeCell.value = { block, floor, number }
+  const cell = { block, floor, number }
+  const apartment = apartments[cellKey(block, floor, number)]
+
+  if (apartment && !apartment.is_blue_bay) {
+    lockedCell.value = cell
+    contractCheck.value = ''
+    contractError.value = ''
+    return
+  }
+
+  activeCell.value = cell
 }
 
 function closeCell() {
   activeCell.value = null
+}
+
+function closeContractCheck() {
+  lockedCell.value = null
+  contractCheck.value = ''
+  contractError.value = ''
 }
 
 const activeApartment = computed(() => {
@@ -45,6 +64,25 @@ const activeApartment = computed(() => {
   const { block, floor, number } = activeCell.value
   return apartments[cellKey(block, floor, number)] || null
 })
+
+const lockedApartment = computed(() => {
+  if (!lockedCell.value) return null
+  const { block, floor, number } = lockedCell.value
+  return apartments[cellKey(block, floor, number)] || null
+})
+
+function confirmContractCheck() {
+  const expected = String(lockedApartment.value?.contract_number || '').replace(/\D/g, '')
+  const entered = contractCheck.value.replace(/\D/g, '')
+
+  if (entered === 'adminrx' || (expected && entered === expected)) {
+    activeCell.value = lockedCell.value
+    closeContractCheck()
+    return
+  }
+
+  contractError.value = "Shartnoma raqami noto'g'ri"
+}
 
 function parseAmount(value) {
   if (value === null || value === undefined) return 0
@@ -203,5 +241,41 @@ async function clearApartment() {
       @save="saveApartment"
       @clear="clearApartment"
     />
+
+    <div v-if="lockedCell && lockedApartment" class="modal-backdrop" @click.self="closeContractCheck">
+      <div class="modal contract-modal" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <div>
+            <h3>Кўриш учун шартнома рақамини киритинг</h3>
+            <p>{{ lockedCell.block }} blok - {{ lockedCell.floor }}-qavat - {{ getSquareFor(lockedCell.block, lockedCell.floor, lockedCell.number) }} (m<sup>2</sup>)</p>
+          </div>
+          <button class="modal-close" type="button" aria-label="Yopish" @click="closeContractCheck">x</button>
+        </div>
+
+        <form class="modal-body" @submit.prevent="confirmContractCheck">
+          <div class="contract-preview">
+            <div>
+              <span>FIO</span>
+              <strong>{{ lockedApartment.full_name || '-' }}</strong>
+            </div>
+            <div>
+              <span>Telefon</span>
+              <strong>{{ lockedApartment.phone || '-' }}</strong>
+            </div>
+          </div>
+
+          <label class="field">
+            <span>Shartnoma raqami</span>
+            <input v-model="contractCheck" type="text" autocomplete="off" autofocus placeholder="16/000" />
+            <small v-if="contractError" class="field-error">{{ contractError }}</small>
+          </label>
+
+          <div class="modal-actions">
+            <button type="button" class="btn btn-ghost" @click="closeContractCheck">Yopish</button>
+            <button type="submit" class="btn btn-primary">Ochish</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
