@@ -128,8 +128,7 @@ function clearData() {
       <div class="modal-header">
         <div>
           <h3>Хонадон маълумотлари</h3>
-          <p>{{ cell.block }} блок • {{ cell.floor }}-қават • {{ cell.number }}-хонадон</p>
-          <p>{{ getSquareFor(cell.block, cell.floor, cell.number) }} (m<sup>2</sup>)</p>
+          <p>{{ cell.block }} блок • {{ cell.floor }}-қават • {{ getSquareFor(cell.block, cell.floor, cell.number) }} (m<sup>2</sup>)</p>
         </div>
         <button class="modal-close" type="button" aria-label="Yopish" @click="$emit('close')">✕</button>
       </div>
