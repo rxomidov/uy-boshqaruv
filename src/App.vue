@@ -83,6 +83,8 @@ async function saveApartment(payload) {
     contract_number: payload.contract_number,
     paid_amount: parseAmount(payload.paid_amount),
     rest_amount: parseAmount(payload.rest_amount),
+    cash_amount: parseAmount(payload.cash_amount),
+    bank_amount: parseAmount(payload.bank_amount),
     is_blue_bay: Boolean(payload.is_blue_bay),
     additional_info: payload.additionalInfo,
     status: payload.status,

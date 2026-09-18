@@ -21,6 +21,8 @@ const form = reactive({
   contract_number: props.apartment?.contract_number || '',
   paid_amount: formatCurrency(props.apartment?.paid_amount),
   rest_amount: formatCurrency(props.apartment?.rest_amount),
+  cash_amount: formatCurrency(props.apartment?.cash_amount),
+  bank_amount: formatCurrency(props.apartment?.bank_amount),
   is_blue_bay: Boolean(props.apartment?.is_blue_bay),
   additionalInfo: props.apartment?.additional_info || '',
 })
@@ -31,6 +33,8 @@ function clearApartmentFields() {
   form.fullName = ''
   form.phone = ''
   form.contract_number = ''
+  form.paid_amount = ''
+  form.rest_amount = ''
   form.paid_amount = ''
   form.rest_amount = ''
   form.additionalInfo = ''
@@ -103,6 +107,8 @@ function formPayload(status) {
     contract_number: '',
     paid_amount: '',
     rest_amount: '',
+    cash_amount: '',
+    bank_amount: '',
     additionalInfo: '',
     status,
   }
@@ -175,6 +181,28 @@ function clearData() {
           />
           <small v-if="errors.rest_amount" class="field-error">{{ errors.rest_amount }}</small>
         </label>
+        <label class="field">
+          <span>Нақд тўланган сумма</span>
+          <input
+            v-model="form.cash_amount"
+            type="text"
+            inputmode="numeric"
+            placeholder="000 000"
+            :disabled="form.is_blue_bay"
+            @input="formatAmountInput('cash_amount', $event)"
+          />
+        </label>
+        <label class="field">
+          <span>Банк орқали тўланган сумма</span>
+          <input
+            v-model="form.bank_amount"
+            type="text"
+            inputmode="numeric"
+            placeholder="000 000"
+            :disabled="form.is_blue_bay"
+            @input="formatAmountInput('bank_amount', $event)"
+          />
+        </label>
 
         <!-- <label class="field-checkbox">
           <input v-model="form.is_blue_bay" type="checkbox" />
@@ -201,7 +229,7 @@ function clearData() {
             class="btn btn-ghost"
             @click="clearData"
           >
-            Ma'lumotni tozalash
+            Tozalash
           </button>
           <button type="button" class="btn btn-ghost" @click="$emit('close')">Yopish</button>
           <button type="submit" class="btn btn-primary">Saqlash</button>
