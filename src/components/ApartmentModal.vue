@@ -188,7 +188,6 @@ function clearData() {
         </label>
 
         <div class="modal-actions">
-          <button type="button" class="btn btn-ghost" @click="$emit('close')">Bekor qilish</button>
           <button
             v-if="apartment"
             type="button"
@@ -205,6 +204,7 @@ function clearData() {
           >
             Ma'lumotni tozalash
           </button>
+          <button type="button" class="btn btn-ghost" @click="$emit('close')">Yopish</button>
           <button type="submit" class="btn btn-primary">Saqlash</button>
         </div>
       </form>

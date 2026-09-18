@@ -1,7 +1,7 @@
 # Uy boshqaruvi — Vue 3 + Supabase
 
-16 qavatli uydagi 6 blok (A, B, V, G, D, E) uchun honadonlar va yashovchilar
-ma'lumotlarini boshqarish sayti. Har bir honadon katak sifatida ko'rsatiladi,
+16 qavatli uydagi 6 blok (A, B, V, G, D, E) uchun Xonadonlar va yashovchilar
+ma'lumotlarini boshqarish sayti. Har bir Xonadon katak sifatida ko'rsatiladi,
 ustiga bosilganda ma'lumot kiritish oynasi (modal) ochiladi.
 
 - **Yashil katak** — ma'lumot to'liq va to'g'ri kiritilgan
@@ -93,15 +93,15 @@ npm run preview
 
 ```
 src/
-  blocksConfig.js        # bloklar, qavatlar, honadon sonlari
+  blocksConfig.js        # bloklar, qavatlar, Xonadon sonlari
   supabaseClient.js       # Supabase klientini yaratish
   App.vue                 # asosiy sahifa: ma'lumotlarni yuklash, modal boshqaruvi
   components/
-    BuildingBlock.vue     # bitta blokning ustuni (qavatlar va honadon katakchalari)
-    ApartmentModal.vue    # honadon ma'lumotlarini kiritish/tahrirlash oynasi
+    BuildingBlock.vue     # bitta blokning ustuni (qavatlar va Xonadon katakchalari)
+    ApartmentModal.vue    # Xonadon ma'lumotlarini kiritish/tahrirlash oynasi
 ```
 
-Bloklar, qavatlar oralig'i yoki har qavatdagi honadonlar sonini o'zgartirish
+Bloklar, qavatlar oralig'i yoki har qavatdagi Xonadonlar sonini o'zgartirish
 uchun faqat `src/blocksConfig.js` faylini tahrirlash kifoya — qolgan barcha
 komponentlar shu konfiguratsiyaga qarab avtomatik moslashadi.
 

@@ -1,6 +1,6 @@
 // Uyning umumiy tuzilishi: 16 qavatli, lekin ma'lumot faqat 4- va 16-qavatlar
 // oralig'ida (jami 13 qavat) kiritiladi. Har bir blokning bitta qavatidagi
-// honadonlar soni turlicha.
+// Xonadonlar soni turlicha.
 
 export const FIRST_FLOOR = 4
 export const LAST_FLOOR = 16

@@ -55,7 +55,7 @@ function select(floor, number) {
   <section class="block-card">
     <div class="block-header" :style="{ background: block.color }">
       <h2>{{ block.name }}</h2>
-      <!-- <p>{{ block.perFloor }} ta honadon / qavat</p> -->
+      <!-- <p>{{ block.perFloor }} ta Xonadon / qavat</p> -->
     </div>
 
     <div class="block-grid">
@@ -67,7 +67,7 @@ function select(floor, number) {
           class="cell"
           :class="'cell--' + statusFor(floor, number)"
           :style="statusFor(floor, number) === 'filled' ? { background: block.color, borderColor: block.color } : {}"
-          :aria-label="`${block.name}, ${floor}-qavat, ${number}-honadon`"
+          :aria-label="`${block.name}, ${floor}-qavat, ${number}-Xonadon`"
           type="button"
           @click="select(floor, number)"
         >
