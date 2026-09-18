@@ -14,7 +14,7 @@ function numbersFor() {
 }
 function getSquareFor(block, floor, number) {
   if(block === 'A') {
-    const squares = ['50.93', '58.32 a', '58.32 b', '58.44', '58.52', '65.69 a', '65.69 b', '62.67 a', '62.67 b']
+    const squares = ['50.93', '58.32 a', '58.32 b', '58.44', '58.52', '65.69 a', '65.69 b', '67.62 a', '67.62 b']
     return `${squares[number - 1]}`
   }
   if(block === 'B') {
