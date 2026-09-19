@@ -538,6 +538,18 @@ body {
 
 /* ---------- Responsive ---------- */
 
+@media (min-width: 900px) and (max-width: 1600px) {
+  .block-card {
+    min-width: 160px;
+  }
+  .cell {
+    font-size: 9px;
+  }
+  .block-header h2 {
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 900px) {
   .blocks-row {
     flex-wrap: wrap;
