@@ -125,6 +125,7 @@ body {
 
 .blocks-row {
   display: flex;
+  justify-content: center;
   gap: 8px;
   overflow-x: auto;
   padding-bottom: 8px;
