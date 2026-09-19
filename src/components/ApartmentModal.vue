@@ -207,7 +207,7 @@ function clearData() {
             class="btn btn-danger-outline"
             @click="markInvalid"
           >
-            Noto'g'ri deb belgilash
+            Konflikt bor
           </button>
           <button
             v-if="apartment"
