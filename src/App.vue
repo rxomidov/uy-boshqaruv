@@ -256,17 +256,21 @@ async function clearApartment() {
         <form class="modal-body" @submit.prevent="confirmContractCheck">
           <div class="contract-preview">
             <div>
-              <span>FIO</span>
+              <span>ФИО</span>
               <strong>{{ lockedApartment.full_name || '-' }}</strong>
             </div>
             <div>
-              <span>Telefon</span>
+              <span>Телефон рақами </span>
               <strong>{{ lockedApartment.phone || '-' }}</strong>
+            </div>
+            <div>
+              <span>Қўшимча маълумот</span>
+              <strong>{{ lockedApartment.additional_info || '-' }}</strong>
             </div>
           </div>
 
           <label class="field">
-            <span>Shartnoma raqami</span>
+            <span>Шартнoma рақами</span>
             <input v-model="contractCheck" type="text" autocomplete="off" autofocus placeholder="16/000" />
             <small v-if="contractError" class="field-error">{{ contractError }}</small>
           </label>
