@@ -98,6 +98,9 @@ const amountSummary = computed(() => {
   const totals = {
     paid: 0,
     rest: 0,
+    cash: 0,
+    terminal: 0,
+    bank: 0,
     izmir: 0,
     blueBay: 0,
   }
@@ -105,6 +108,9 @@ const amountSummary = computed(() => {
   Object.values(apartments).forEach((apartment) => {
     totals.paid += parseAmount(apartment.paid_amount)
     totals.rest += parseAmount(apartment.rest_amount)
+    totals.cash += parseAmount(apartment.cash_amount)
+    totals.terminal += parseAmount(apartment.terminal_amount)
+    totals.bank += parseAmount(apartment.bank_amount)
     if (apartment.is_blue_bay) totals.blueBay += 1
     else totals.izmir += 1
   })
@@ -171,18 +177,18 @@ async function clearApartment() {
         <div class="brand-icon">🏢</div>
         <div>
           <h1>Neom Tower TMJ</h1>
-          <p>Barcha blokdagi Xonadonlar va ma'lumotlar</p>
+          <p>Барча блокдаги Хонадонлар ва маълумотлар</p>
         </div>
       </div>
       <div class="legend">
-        <span class="legend-item"><i class="dot dot-filled"></i>Ma'lumot kiritilgan</span>
-        <span class="legend-item"><i class="dot dot-invalid"></i>Ma'lumot noto'g'ri</span>
+        <span class="legend-item"><i class="dot dot-filled"></i>Шартнома киритилган</span>
+        <span class="legend-item"><i class="dot dot-invalid"></i>Шартномада конфликт бор</span>
         <span class="legend-item"><i class="dot dot-blue"></i>Blue Bay</span>
-        <span class="legend-item"><i class="dot dot-empty"></i>Ma'lumot kiritilmagan</span>
+        <span class="legend-item"><i class="dot dot-empty"></i>Шартнома киритилмаган</span>
       </div>
     </header>
 
-    <p v-if="loading" class="status-line">Yuklanmoqda…</p>
+    <p v-if="loading" class="status-line">Юкланмоқда…</p>
     <p v-if="loadError" class="status-line status-error">{{ loadError }}</p>
 
     <main class="blocks-row" v-if="!loading">
@@ -226,6 +232,9 @@ async function clearApartment() {
         <div class="summary-amount summary-amount--paid">
           <span class="summary-amount-label">Jami to'langan</span>
           <span class="summary-amount-value">{{ formatAmount(amountSummary.paid) }} so'm</span>
+          <span style="font-size: 14px;">Naqd: {{ formatAmount(amountSummary.cash) }} so'm</span>
+          <span style="font-size: 14px;">Terminal: {{ formatAmount(amountSummary.terminal) }} so'm</span>
+          <span style="font-size: 14px;">Bank: {{ formatAmount(amountSummary.bank) }} so'm</span>
         </div>
         <div class="summary-amount summary-amount--rest">
           <span class="summary-amount-label">Jami qolgan</span>
