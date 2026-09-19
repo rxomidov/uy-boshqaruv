@@ -22,6 +22,7 @@ const form = reactive({
   paid_amount: formatCurrency(props.apartment?.paid_amount),
   rest_amount: formatCurrency(props.apartment?.rest_amount),
   cash_amount: formatCurrency(props.apartment?.cash_amount),
+  terminal_amount: formatCurrency(props.apartment?.terminal_amount),
   bank_amount: formatCurrency(props.apartment?.bank_amount),
   is_blue_bay: Boolean(props.apartment?.is_blue_bay),
   additionalInfo: props.apartment?.additional_info || '',
@@ -35,8 +36,8 @@ function clearApartmentFields() {
   form.contract_number = ''
   form.paid_amount = ''
   form.rest_amount = ''
-  form.paid_amount = ''
-  form.rest_amount = ''
+  form.terminal_amount = ''
+  form.bank_amount = ''
   form.additionalInfo = ''
   errors.value = {}
 }
@@ -81,6 +82,7 @@ function formPayload(status) {
     paid_amount: '',
     rest_amount: '',
     cash_amount: '',
+    terminal_amount: '',
     bank_amount: '',
     additionalInfo: '',
     status,
@@ -163,6 +165,17 @@ function clearData() {
             placeholder="000 000"
             :disabled="form.is_blue_bay"
             @input="formatAmountInput('cash_amount', $event)"
+          />
+        </label>
+        <label class="field">
+          <span>Терминал орқали тўланган сумма</span>
+          <input
+            v-model="form.terminal_amount"
+            type="text"
+            inputmode="numeric"
+            placeholder="000 000"
+            :disabled="form.is_blue_bay"
+            @input="formatAmountInput('terminal_amount', $event)"
           />
         </label>
         <label class="field">
