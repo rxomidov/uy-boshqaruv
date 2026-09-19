@@ -218,7 +218,11 @@ async function clearApartment() {
       </div>
       <div class="summary-amounts">
         <div class="summary-amount summary-amount--blue-bay">
-          <span class="summary-amount-label">Blue bay firmasiga berilgan uylar</span>
+          <span class="summary-amount-label">Shartnoma kiritilmagan</span>
+          <span class="">{{ total - amountSummary.blueBay - amountSummary.izmir }} ta</span>
+        </div>
+        <div class="summary-amount summary-amount--blue-bay">
+          <span class="summary-amount-label">Blue bay firmasiga berilgan</span>
           <span class="summary-amount-value">{{ amountSummary.blueBay }} ta</span>
         </div>
         <div class="summary-amount summary-amount--izmir">
