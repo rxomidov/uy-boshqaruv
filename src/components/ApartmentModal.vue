@@ -207,7 +207,7 @@ function clearData() {
             class="btn btn-danger-outline"
             @click="markInvalid"
           >
-            Konflikt bor
+            🟥
           </button>
           <button
             v-if="apartment"
