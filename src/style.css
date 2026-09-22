@@ -303,6 +303,29 @@ body {
   justify-content: flex-end;
 }
 
+.summary-amounts-wrap {
+  position: relative;
+  margin-left: auto;
+}
+
+.summary-amounts-wrap .summary-amounts {
+  margin-left: 0;
+}
+
+.summary-amounts--locked {
+  filter: blur(7px);
+  user-select: none;
+  pointer-events: none;
+}
+
+.summary-amounts-lock {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .summary-amount {
   padding-left: 12px;
   border-left: 1px solid var(--border);
@@ -403,6 +426,10 @@ body {
 
 .contract-modal {
   max-width: 380px;
+}
+
+.summary-password-modal {
+  max-width: 360px;
 }
 
 .contract-preview {
@@ -565,6 +592,11 @@ body {
   }
 
   .summary-amounts {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .summary-amounts-wrap {
     width: 100%;
     margin-left: 0;
   }

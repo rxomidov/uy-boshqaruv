@@ -14,6 +14,10 @@ const activeCell = ref(null) // { block, floor, number }
 const lockedCell = ref(null)
 const contractCheck = ref('')
 const contractError = ref('')
+const summaryUnlocked = ref(false)
+const summaryPasswordModal = ref(false)
+const summaryPassword = ref('')
+const summaryPasswordError = ref('')
 
 const total = totalApartments()
 
@@ -92,6 +96,18 @@ function parseAmount(value) {
 
 function formatAmount(value) {
   return new Intl.NumberFormat('uz-UZ').format(value)
+}
+
+function unlockSummary() {
+  if (summaryPassword.value === 'qwerty123') {
+    summaryUnlocked.value = true
+    summaryPasswordModal.value = false
+    summaryPassword.value = ''
+    summaryPasswordError.value = ''
+    return
+  }
+
+  summaryPasswordError.value = "Parol noto'g'ri"
 }
 
 const amountSummary = computed(() => {
@@ -218,17 +234,20 @@ async function clearApartment() {
       </div>
       <div class="summary-amounts">
         <div class="summary-amount summary-amount--blue-bay">
-          <span class="summary-amount-label">Shartnoma kiritilmagan</span>
-          <span class="">{{ total - amountSummary.blueBay - amountSummary.izmir }} ta</span>
-        </div>
-        <div class="summary-amount summary-amount--blue-bay">
-          <span class="summary-amount-label">Blue bay firmasiga berilgan</span>
-          <span class="summary-amount-value">{{ amountSummary.blueBay }} ta</span>
-        </div>
-        <div class="summary-amount summary-amount--izmir">
-          <span class="summary-amount-label">Izmir jami shartnoma</span>
-          <span class="summary-amount-value">{{ amountSummary.izmir }} ta</span>
-        </div>
+            <span class="summary-amount-label">Shartnoma kiritilmagan</span>
+            <span class="">{{ total - amountSummary.blueBay - amountSummary.izmir }} ta</span>
+          </div>
+          <div class="summary-amount summary-amount--blue-bay">
+            <span class="summary-amount-label">Blue bay firmasiga berilgan</span>
+            <span class="summary-amount-value">{{ amountSummary.blueBay }} ta</span>
+          </div>
+          <div class="summary-amount summary-amount--izmir">
+            <span class="summary-amount-label">Izmir jami shartnoma</span>
+            <span class="summary-amount-value">{{ amountSummary.izmir }} ta</span>
+          </div>
+      </div>
+      <div class="summary-amounts-wrap">
+        <div class="summary-amounts" :class="{ 'summary-amounts--locked': !summaryUnlocked }">
         <div class="summary-amount summary-amount--all">
           <span class="summary-amount-label">Jami</span>
           <span class="summary-amount-value">{{ formatAmount(amountSummary.paid + amountSummary.rest) }} so'm</span>
@@ -244,6 +263,10 @@ async function clearApartment() {
           <span class="summary-amount-label">Jami qolgan</span>
           <span class="summary-amount-value">{{ formatAmount(amountSummary.rest) }} so'm</span>
         </div>
+        </div>
+        <div v-if="!summaryUnlocked" class="summary-amounts-lock">
+          <button class="btn btn-primary" type="button" @click="summaryPasswordModal = true; summaryPasswordError = ''">Ko'rish</button>
+        </div>
       </div>
     </footer>
 
@@ -255,6 +278,30 @@ async function clearApartment() {
       @save="saveApartment"
       @clear="clearApartment"
     />
+
+    <div v-if="summaryPasswordModal" class="modal-backdrop" @click.self="summaryPasswordModal = false">
+      <div class="modal summary-password-modal" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <div>
+            <h3>Summalarni ko'rish</h3>
+            <p>Davom etish uchun parolni kiriting.</p>
+          </div>
+          <button class="modal-close" type="button" aria-label="Yopish" @click="summaryPasswordModal = false">x</button>
+        </div>
+
+        <form class="modal-body" @submit.prevent="unlockSummary">
+          <label class="field">
+            <span>Parol</span>
+            <input v-model="summaryPassword" type="password" autocomplete="off" autofocus placeholder="Parolni kiriting" />
+            <small v-if="summaryPasswordError" class="field-error">{{ summaryPasswordError }}</small>
+          </label>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-ghost" @click="summaryPasswordModal = false">Bekor qilish</button>
+            <button type="submit" class="btn btn-primary">Ochish</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <div v-if="lockedCell && lockedApartment" class="modal-backdrop" @click.self="closeContractCheck">
       <div class="modal contract-modal" role="dialog" aria-modal="true">
