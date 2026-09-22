@@ -285,6 +285,7 @@ async function clearApartment() {
           <div>
             <h3>Summalarni ko'rish</h3>
             <p>Davom etish uchun parolni kiriting.</p>
+            <p>Yoki adminlarga murojaat qiling.</p>
           </div>
           <button class="modal-close" type="button" aria-label="Yopish" @click="summaryPasswordModal = false">x</button>
         </div>
